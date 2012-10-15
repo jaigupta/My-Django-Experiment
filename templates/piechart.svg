@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <defs>
+        <linearGradient id="linearGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#ffaaaa" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#994444" stop-opacity="1"/>
+        </linearGradient>
+        
+		<linearGradient id="linearGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#aaaaff" stop-opacity="1"/>
+
+          <stop offset="100%" stop-color="#444499" stop-opacity="1"/>
+        </linearGradient>
+        
+		<linearGradient id="linearGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#aaaaff" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#2ab266" stop-opacity="1"/>
+        </linearGradient>
+        
+		<linearGradient id="linearGradient4" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#ff00ff" stop-opacity="1"/>
+
+          <stop offset="100%" stop-color="#660066" stop-opacity="1"/>
+        </linearGradient>
+        
+		<linearGradient id="linearGradient5" x1="100%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%"   stop-color="#44ff44" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#006600" stop-opacity="1"/>
+        </linearGradient>
+        
+		<linearGradient id="linearGradient6" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#ff3333" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#760000" stop-opacity="1"/>
+        </linearGradient>
+		
+		<linearGradient id="linearGradient7" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#22bbff" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#000066" stop-opacity="1"/>
+        </linearGradient>
+        
+		<linearGradient id="linearGradient8" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#00ffff" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#006666" stop-opacity="1"/>
+        </linearGradient>
+		
+        <linearGradient id="linearGradient9" x1="100%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%"   stop-color="#225544" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#ffaa00" stop-opacity="1"/>
+        </linearGradient>
+        
+		<linearGradient id="linearGradient10" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#aa3333" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#333300" stop-opacity="1"/>
+        </linearGradient>
+    </defs>
+	
+    <svg x="300" y="15">
+        <path d="M50,50
+				l50,0
+                 A50,50 0 {{t.0}},1  {{x.0}},{{y.0}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient1);"
+                />
+				{% if count.1 %}
+		<path d="M50,50
+				L{{x.0}},{{y.0}}
+                 A50,50 0 {{t.1}},1  {{x.1}},{{y.1}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient2);"
+                />
+				{% endif %}
+				{% if count.2 %}
+		<path d="M50,50
+				L{{x.1}},{{y.1}}
+                 A50,50 0 {{t.2}},1  {{x.2}},{{y.2}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient3);"
+                />{% endif %}
+				{% if count.3 %}
+		<path d="M50,50
+				L{{x.2}},{{y.2}}
+                 A50,50 0 {{t.3}},1  {{x.3}},{{y.3}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient4);"
+                />{% endif %}
+				{% if count.4 %}
+		<path d="M50,50
+				L{{x.3}},{{y.3}}
+                 A50,50 0 {{t.4}},1  {{x.4}},{{y.4}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient5);"
+                />{% endif %}
+				{% if count.5 %}
+		<path d="M50,50
+				L{{x.4}},{{y.4}}
+                 A50,50 0 {{t.5}},1  {{x.5}},{{y.5}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient6);"
+                />{% endif %}
+				{% if count.6 %}
+		<path d="M50,50
+				L{{x.5}},{{y.5}}
+                 A50,50 0 {{t.6}},1  {{x.6}},{{y.6}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient7);"
+                />{% endif %}
+				{% if count.7 %}
+		<path d="M50,50
+				L{{x.6}},{{y.6}}
+                 A50,50 0 {{t.7}},1  {{x.7}},{{y.7}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient8);"
+                />{% endif %}
+				{% if count.8 %}
+		<path d="M50,50
+				L{{x.7}},{{y.7}}
+                 A50,50 0 {{t.8}},1  {{x.8}},{{y.8}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient9);"
+                />{% endif %}
+				{% if count.9 %}
+		<path d="M50,50
+				L{{x.8}},{{y.8}}
+                 A50,50 0 {{t.9}},1  {{x.9}},{{y.9}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient10);"
+                />{% endif %}
+        <text x="25" y="130" style="stroke:#000000; fill: #000000; font-family:Arial; font-size: 14px;" >Pie Chart</text>
+    </svg>
+
+</svg>

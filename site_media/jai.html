@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Custom Form Generator</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="json2.js"></script>
+<script type="text/javascript" src="mainjs.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js" type="text/javascript"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.2.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/i18n/jquery-ui-i18n.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
+<script type="text/javascript">
+function temp(){
+$("#maindisplaybox").resizable();
+$("#footer").draggable();
+$("#header").draggable();
+}
+</script>
+</head>
+</head>
+<body onload="temp();">
+<div>
+<div id="mainBody">
+	<div id="adminstorPan">
+		<div id="mainbox">
+			<ul>
+                <li><a href="#titleedit" >Form Title</a></li>
+                <li><a href="#toolsedit" >Add Element</a></li>
+                <li><a href="#submitedit" >Submit Button</a></li>
+            </ul>
+            <div id="toolsedit">
+                Label:<input type="text" value="" id="lab"></input><br>
+                Type:<select id="etype">
+                <option value="text">Plain Text</option>
+                <option value="email">Email Address</option>
+                <option value="password">Password</option>
+                <!--<option value="label">Label</option>-->
+                <option value="date">Date Box</option>
+                <option value="checkbox">Checkbox</option>
+                <option value="radiobox">Radiobox</option>
+                <option value="textarea">Text Area</option>
+                </select>
+                <input type="button" id="creator" value="Create"></input>
+            </div>
+            <div id="titleedit">
+                Form title:<input type="text" value="Sample Form" onKeyUp="setFormTitle(this.value);"/>
+            </div>
+            <div id="submitedit">
+                Submit Label:<input type="text" value="Submit" onKeyUp="setSubmitLabel(this.value);"/><br/>
+                Finished creating form? click to submit. <input type="submit" value="Finish" onclick="submitForm();return false;"/ >
+            </div>
+        </div>
+        <div id="toggledisp"><div style="display: none;" class="toggledispchild">&lt;&lt;Show ToolBox&gt;&gt;</div><div style="display:block;" class="toggledispchild">&gt;&gt;Hide ToolBox&lt;&lt;</div></div>
+        <div>
+<div id="userFrame" class="userFrameClass" title="Element Editor">
+    <div class="userFrameContentClass" id="userFrameContent">
+        <div class="eleEditor" id="labelEditor">
+        Label Text:<input type="text" id="labelEditorBox"><input type="submit" onClick="labelEditorSetLabel();" value="Update" /><br/>
+        Required:<input id="labelEditorRequiredBox" type="checkbox" onChange="labelEditorUpdateReq();"/><br/>
+        <input type="submit" onClick="removeCleanly();hideFrame();" value="Delete Element" />
+       <!-- <input type="submit" onClick="moveEleUp();" value="Move Up"> <input type="submit" value="Move Down" onClick="moveEleDown();">
+       -->
+        </div>
+        <div class="eleEditor" id="radioEditor">
+        Label Text:<input type="text" id="radioEditorBox">
+        <input type="submit" onClick="radioEditorSetLabel();" value="Update" /><br/>
+        Add Child Radio:<input type="text" id="radioEditorRadioAdder">
+        <input type="submit" onClick="radioEditorAddRadio();" value="Add Radio" /><br/>
+        <input type="submit" onClick="removeCleanly();hideFrame();" value="Delete Element" />
+        </div>
+        <div class="eleEditor" id="checkboxEditor">
+        Label Text:<input type="text" id="textEditorBox">
+        <input type="submit" onClick="checkboxEditorSetLabel();" value="Update" /><br/>
+        <input type="submit" onClick="removeCleanly();hideFrame();" value="Delete Element" />
+        </div>
+	</div>
+    	</div>
+        	<div id="maindisplaybox" style="border:1px solid; background-color:#F4F4F4;">
+                <div id="header" style="padding-top:10px;">
+                    <div id="formTitle" align="center">Sample Form</div><br/>
+                </div>
+                <div id="displayPan">
+                    
+                </div>
+                <div id="footer" align="center">
+                    <input id="submitbutton" type="submit" value="submit"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+from django.shortcuts import render_to_response,HttpResponse,HttpResponseRedirect
+from datetime import datetime,date,timedelta
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from models import newchat,bhaat,auths
+from django.contrib.sessions.models import Session
+import cgi
+import urllib
+import simplejson as json
+import hellodjango.settings as settings
+import base64
+import hashlib
+import hmac
+
+def index(request):
+	try:
+		if len(parse_signed_request(request.POST['signed_request'],settings.FACEBOOK_API_SECRET)['oauth_token'])<20:
+			return HttpResponse('<script>top.location.href="http://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=http://apps.facebook.com/%s/index.php&scope=publish_stream,read_mailbox"</script>'%(settings.FACEBOOK_APP_ID,settings.FACEBOOK_APP_NAME))
+	except:
+		return HttpResponse('<script>top.location.href="http://www.facebook.com/dialog/oauth?client_id=%s&redirect_uri=http://apps.facebook.com/%s/index.php&response_type=token&scope=publish_stream"</script>'%(settings.FACEBOOK_APP_ID,settings.FACEBOOK_APP_NAME))
+	if 'error_reason' in request.GET:
+		return HttpResponse('Sorry! You cannot continue using this app. We were unable to retrieve your basic information.')
+	user=User.objects.filter(username=request.user.username)
+	a=User.objects.all().order_by('last_login')
+	i=0;
+	while i<len(a) and datetime.now()-a[i].last_login>timedelta(0,1000,0):
+		a2=newchat.objects.filter(u1=a[i].username)
+		if len(a2)==0:
+			a2=newchat.objects.filter(u2=a[i].username)
+			if not len(a2)==0:
+				newchat.objects.get(u2=a[i].username).delete()
+		else:
+			newchat.objects.get(u1=a[i].username).delete()
+		a[i].delete()
+		i+=1
+	a=Session.objects.all().order_by('expire_date')
+	i=0;
+	while i<len(a) and datetime.now()-a[i].expire_date>timedelta(0,-10,0):
+		a[i].delete()
+		i+=1
+	if len(user)!=0:
+		logout_user(request)
+		a=request.user.username
+		User.objects.get(username=a).delete()
+	logout(request)
+	return render_to_response('chat_users/index.php',{'code':request.POST['signed_request']})
+
+def index2(request):
+	return render_to_response('chat_users/index.php')
+
+def blank(request):
+	return HttpResponse('');
+
+def chat(request):
+	logout_user(request)
+	if request.method=='POST':
+		if len(User.objects.filter(username=request.POST['username']))!=0:
+			i=User.objects.get(username=request.POST['username'])
+			if datetime.now()-i.last_login>timedelta(0,1000,0):
+				try:
+					a=newchat.objects.get(u1=request.user.username)
+					a.delete()
+				except:
+					pass
+				try:
+					a=newchat.objects.get(u2=request.user.username)
+					a.delete()
+				except:
+					pass
+					i.delete()
+			else:
+				return HttpResponse('<status>Error:User already Exists</status>',mimetype='text/xml')
+	else:
+		return render_to_response('<status>error</status>',mimetype='text/xml')
+	user=User.objects.create_user(str(request.POST['username']),'abc@d.com','deepaknjai')
+	user.is_staff=False
+	user.is_active=False
+	user.is_superuser=False
+	user.save()
+	try:
+		authsobj.get(user=user).delete()
+	except:
+		pass
+	authsobj=auths(user=user,code=request.POST['code'],token=parse_signed_request(request.POST['code'],settings.FACEBOOK_API_SECRET)['oauth_token'], details="")
+	authsobj.save()
+	user2=authenticate(username=user.username,password='deepaknjai')
+	if user2 is not None:
+		login(request,user2)
+		return HttpResponse('<status>ok</status>',mimetype='text/xml')
+	else:
+		return HttpResponse('<status>error</status>',mimetype='text/xml')
+
+def getchatzz(request):
+	if not request.user.is_authenticated or len(User.objects.filter(username=request.user.username))==0:
+		return HttpResponseRedirect('/chat/')
+	return render_to_response("chat_users/mainChatPage.html",{'code':auths.objects.get(user=request.user).token,'myname':request.user.username,'appname':settings.FACEBOOK_APP_NAME,'appid':settings.FACEBOOK_APP_ID})
+
+def search_user2(request):
+	user=User.objects.get(username=request.user.username);
+	user.is_active=False
+	user.save()
+	return search_user(request)
+
+def search_user(request):
+	found=0
+	i=User.objects.get(username=request.user.username)
+	if datetime.now()-i.last_login>timedelta(0,700,0):
+		i.last_login=datetime.now()
+		i.save()
+	if i.is_active==True:
+		try:
+			a=newchat.objects.get(u1=request.user.username)
+		except:
+			try:
+				a=newchat.objects.get(u2=request.user.username)
+			except:
+				i.is_active=False
+				i.save()
+	if i.is_active==True:
+		return HttpResponse('<note><chix>y</chix><you>%s</you><stranger>%s</stranger></note>'%(a.u1,a.u2),mimetype="text/xml")
+	a=User.objects.all().order_by('last_login').reverse()
+	for user in a:
+		if user.is_active==False:
+			if datetime.now()-user.last_login>timedelta(0,700,0):
+				user.delete()
+				continue
+			elif user.username!=request.user.username:
+				i.is_active=user.is_active=True
+				user.save()
+				i.save()
+				chat=newchat(u1=user.username,u2=i.username)
+				chat.save()
+				found=1
+				break
+	if found==1:
+		return HttpResponse('<note><chix>y</chix><you>%s</you><stranger>%s</stranger></note>'%(i.username,user.username),mimetype="text/xml")
+	else:
+		return HttpResponse('<chix>n</chix>',mimetype="text/xml")
+
+def logout_user(request):
+	a=newchat.objects.filter(u1=request.user.username)
+	if len(a)==0:
+		a=newchat.objects.filter(u2=request.user.username)
+		if len(a)==0:
+			return HttpResponseRedirect('/chat/')
+		else:
+			a=newchat.objects.get(u2=request.user.username)
+	else:
+		a=newchat.objects.get(u1=request.user.username)
+	a.delete()
+	return HttpResponseRedirect('/chat/')
+	
+def saveDet(request):
+	try:
+		a=auths.objects.get(user=request.user)
+		a.details=request.POST['details']
+		a.save()
+		return HttpResponse("stored")
+	except:
+		return ("error")
+
+def getform(request):
+	return render_to_response("chat_users/submissionForm.html");
+
+def getchat(request):
+	return render_to_response("chat_users/chatpage.html")
+
+def getchat2(request):
+	a=newchat.objects.filter(u1=request.user.username)
+	if len(a)==0:
+		a=newchat.objects.filter(u2=request.user.username)
+		if len(a)==0:
+			logout_user(request)
+			return HttpResponseRedirect('/chat/')
+		else:
+			
+			a=newchat.objects.get(u2=request.user.username)
+	else:
+		
+		a=newchat.objects.get(u1=request.user.username)
+	if request.method=='GET':
+		det=request.GET.get('details','<br>')
+		bat=bhaat(name=request.user.username,thistime=datetime.now(),detail=det.replace('"',"''").replace("<","&lt;").replace(">","&gt;")\
+		.replace("{lt}","{ lt }").replace("{gt}","{ gt }"),link=a)
+		bat.save()
+		return HttpResponse('');
+
+def endthischat(request):
+	a=newchat.objects.filter(u1=request.user.username)
+	if len(a)==0:
+		a=newchat.objects.filter(u2=request.user.username)
+		if len(a)==0:
+			return getpart(request)
+		else:
+			a=newchat.objects.get(u2=request.user.username)
+	else:
+		a=newchat.objects.get(u1=request.user.username)
+	a.delete()
+	return getpart(request)
+
+def getpart(request):
+	try:
+		cno=int(request.GET.get('chatno','-3'))
+	except ValueError:
+		cno=-3
+	if cno==-3:
+		return render_to_response('chat_users/part.html',{'record':0})
+	if cno==-4:
+		return render_to_response('chat_users/part.html',{'record':-4})
+	i=User.objects.get(username=request.user.username)
+	if datetime.now()-i.last_login>timedelta(0,4000,0):
+		i.last_login=datetime.now()
+		i.save()
+	a=newchat.objects.filter(u1=request.user.username)
+	if len(a)==0:
+		a=newchat.objects.filter(u2=request.user.username)
+		if len(a)==0:
+			s="<chitend>Chat Finished...</chitend>"
+			return render_to_response('chat_users/part.html',{'chit':s},mimetype="text/xml")
+		else:
+			a=newchat.objects.get(u2=request.user.username)
+	else:
+		a=newchat.objects.get(u1=request.user.username)
+	chits=a.bhaat_set.all().order_by('thistime')
+	chits=chits[cno:len(chits)]
+	s=""
+	i=cno
+	for p in chits:
+		s+="<chit"+str(cno)+">{r}"+p.name+": {B}"+p.detail+"</chit"+str(cno)+">";
+		cno+=1
+	return render_to_response('chat_users/part.html',{'chit':s},mimetype="text/xml")
+
+def identityreviel(request):
+	a=newchat.objects.filter(u1=request.user.username)
+	if len(a)==0:
+		a=newchat.objects.filter(u2=request.user.username)
+		if len(a)==0:
+			return HttpResponse('U are not connected!')
+		else:
+			a=newchat.objects.get(u2=request.user.username)
+	else:
+		a=newchat.objects.get(u1=request.user.username)
+	chits=a.bhaat_set.all().order_by('thistime')
+	if datetime.now()-chits[0].thistime>timedelta(0,15,0) and len(chits)>30:
+		note=bhaat(name='ADMIN',thistime=datetime.now(),detail='%s has revieled his identity.This is his profile \n\
+		{lt}a href="http://www.facebook.com/profile.php?id=%s" target="_blank"{gt}link{lt}/a{gt}.'\
+		%(request.user.username,parse_signed_request(auths.objects.get(user=request.user).code,settings.FACEBOOK_API_SECRET)['user_id']),link=a)
+		note.save()
+		return HttpResponse('Your Identity will be revieled soon.')
+	return HttpResponse('You cant reviel your identity at this moment.\nLet the chat Progress for some more time')
+
+def base64_url_decode(inp):
+    padding_factor = (4 - len(inp) % 4) % 4
+    inp += "="*padding_factor
+    return base64.b64decode(unicode(inp).translate(dict(zip(map(ord,u'-_'), u'+/'))))
+
+def parse_signed_request(signed_request, secret):
+    l = signed_request.split('.', 2)
+    encoded_sig = l[0]
+    payload = l[1]
+
+    sig = base64_url_decode(encoded_sig)
+    data = json.loads(base64_url_decode(payload))
+
+    if data.get('algorithm').upper() != 'HMAC-SHA256':
+        # log.error('Unknown algorithm')
+        return None
+    else:
+        expected_sig = hmac.new(secret, msg=payload,
+digestmod=hashlib.sha256).digest()
+
+    if sig != expected_sig:
+        return None
+    else:
+        # log.debug('valid signed request received..')
+        return data 

@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Div Swop</title>
+
+<style type="text/css">
+p { line-height:200px; text-align:center }
+#div1 { background:yellow; width:200px; height:200px; }
+#div2 { background:pink; width:200px; height:200px; }
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function()
+		{
+               	$('#button').toggle(
+                    function()
+			{
+                        $('#div1').css({'display':'none'});
+                        $('#div2').slideDown(); // or try "fadeIn()"
+                        $('#button-img').attr('src','images/button-clicked.jpg');
+                    	}, 
+			function() 
+			{
+                        $('#div2').css({'display':'none'});
+                        $('#div1').slideDown(); // or try "fadeIn()"
+                        $('#button-img').attr('src','images/button.jpg');
+                    	});
+          	});
+</script>
+
+</head>
+<body>
+
+
+<div id="button">
+	<img src="images/button.jpg" id="button-img"/>
+</div>
+
+<div id="div1">
+	<p>...content in Div One ...</p>
+</div>
+
+<div id="div2" style="display:none;">
+	<p>...switch to Div Two ...</p>
+</div>

@@ -1,0 +1,21 @@
+<script type="text/javascript" src="/site_media/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js" type="text/javascript"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.2.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/i18n/jquery-ui-i18n.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script type="text/javascript">
+	$(document).ready(function(){$("#accor").accordion();});
+</script>
+<div align="center">
+This is a list of all forms available for filling<br/>
+<br/>
+<div id="accor" style="width:700px; text-align:left;">
+{%for i in sums reversed%}
+<h3><a href="#">{{i.0}}</a></h3>
+<div>
+<p><a href="/svg/showform/?id={{i.1}}">Click here to fill form</a><br/>
+<a href="/svg/reviewform/?id={{i.1}}">Click to see analyse form submissions</a></p>
+</div>
+{%endfor%}
+</div>
+</div>

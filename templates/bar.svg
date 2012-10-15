@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <defs>
+        <linearGradient id="linearGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#ffaaaa" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#994444" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linearGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#aaaaff" stop-opacity="1"/>
+
+          <stop offset="100%" stop-color="#444499" stop-opacity="1"/>
+        </linearGradient>
+
+        <linearGradient id="linearGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#aaaaff" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#222266" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linearGradient4" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#ff00ff" stop-opacity="1"/>
+
+          <stop offset="100%" stop-color="#660066" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linearGradient5" x1="100%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%"   stop-color="#44ff44" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#006600" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="linearGradient6" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#ff3333" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#760000" stop-opacity="1"/>
+
+        </linearGradient>
+    </defs>
+
+    <svg y="15">
+        <line x1="10" y1="10"   x2="10"  y2="100" style="stroke: #000000; stroke-width:2;"/>
+        <line x1="10" y1="100"  x2="100" y2="100" style="stroke: #000000; stroke-width:2;"/>
+        <path d="
+                 M10,{{a}}
+                 l20,{{b}}
+                 l20,{{c}}
+                 l20,{{d}}
+        "
+
+              style="stroke: url(#linearGradient1); stroke-width:2; fill:none;"/>
+        <text x="30" y="130" style="stroke:#000000; fill: #000000; font-family:Arial; font-size: 14px;" >Graphs</text>
+    </svg>
+
+    <svg x="150" y="15">
+        <line x1="10"  y1="10"   x2="10"  y2="100" style="stroke: #000000; stroke-width:2;"/>
+        <line x1="10"  y1="100"  x2="100" y2="100" style="stroke: #000000; stroke-width:2;"/>
+
+        <rect x="20" y="{{a2}}" width="10" height="{{a1}}" style="fill:url(#linearGradient2)"/>
+        <rect x="40" y="{{b2}}" width="10" height="{{b1}}" style="fill:url(#linearGradient2)"/>
+        <rect x="60" y="{{c2}}" width="10" height="{{c1}}" style="fill:url(#linearGradient2)"/>
+        <rect x="80" y="{{d2}}" width="10" height="{{d1}}" style="fill:url(#linearGradient2)"/>
+
+        <text x="30" y="130" style="stroke:#000000; fill: #000000; font-family:Arial; font-size: 14px;" >Bar Charts</text>
+    </svg>
+
+    <svg x="300" y="15">
+        <path d="M50,50
+				l50,0
+                 A50,50 0 0,1  {{x1}},{{y1}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient3);"
+                />
+		<path d="M50,50
+				L{{x1}},{{y1}}
+                 A50,50 0 0,1  {{x2}},{{y2}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient4);"
+                />
+		<path d="M50,50
+				L{{x2}},{{y2}}
+                 A50,50 0 0,1  {{x3}},{{y3}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient5);"
+                />
+		<path d="M50,50
+				L{{x3}},{{y3}}
+                 A50,50 0 0,1  {{x4}},{{y4}}
+                 z
+               "
+              style="stroke:#000000; fill: url(#linearGradient6);"
+                />
+
+        
+
+        <text x="25" y="130" style="stroke:#000000; fill: #000000; font-family:Arial; font-size: 14px;" >Pie Charts</text>
+    </svg>
+
+</svg>
+

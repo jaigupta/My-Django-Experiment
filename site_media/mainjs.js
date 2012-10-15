@@ -1,0 +1,41 @@
+var aele={count:0,eles:[]};var eleAtFocus=null;var elecount=0;$(document).ready(function(){$(function(){$("#mainbox").tabs();});$("button, input:submit, input:button").button();$("#userFrame").dialog({autoOpen:false});$("#creator").click(function(){hideFrame();var box;var divele=$("<div></div>");divele.draggable({handle:".draghandle"});var etypev=$("#etype").attr("value");if($('#lab').val()=="")
+{alert('label can\'t be empty!');return;}
+var sLabel=$('<label></label>').html($('#lab').val());if(etypev=="date"){box=$("<input></input>");box.datepicker();aele.eles[aele.count]={type:'date',label:$("#lab").val(),req:false};aele.count++;sLabel.dblclick(function(){eleAtFocus=divele;setContent(".eleEditor","#labelEditor");$("#labelEditorBox").val(sLabel.html());var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);$("#labelEditorRequiredBox").attr({checked:aele.eles[n].req});$("#userFrame").dialog('open');});$.datepicker.setDefaults($.datepicker.regional['']);box.attr({type:"text"});}else if(etypev=="richtext"){}else if(etypev=="radiobox"){box=$('<label class="draghandle">'+$("#lab").val()+'</label>');aele.eles[aele.count]={type:'radio',label:$("#lab").val(),count:0,eles:[]};aele.count++;divele.sortable();box.dblclick(fn=function(){eleAtFocus=divele;setContent(".eleEditor","#radioEditor");$("#radioEditorBox").val(sLabel.html());$("#userFrame").dialog('open');});divele.append(box);divele.attr({id:"ele"+elecount++});divele.append($("<br/>"));$("#displayPan").append(divele);fn();return;}else if(etypev=="textarea"){box=$("<textarea></textarea>");aele.eles[aele.count]={type:'textarea',label:$("#lab").val(),req:false};aele.count++;sLabel.dblclick(function(){eleAtFocus=divele;setContent(".eleEditor","#labelEditor");var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);$("#labelEditorRequiredBox").attr({checked:aele.eles[n].req});$("#labelEditorBox").val(sLabel.html());$("#userFrame").dialog('open');});divele.append(sLabel);divele.append("<br/>")
+divele.append(box);divele.attr({id:"ele"+elecount++});divele.append($("<br/>"));$("#displayPan").append(divele);return;}else if(etypev=="text"){box=$("<input></input>");aele.eles[aele.count]={type:'text',label:$("#lab").val(),req:false};aele.count++;sLabel.dblclick(function(){eleAtFocus=divele;setContent(".eleEditor","#labelEditor");var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);$("#labelEditorRequiredBox").attr({checked:aele.eles[n].req});$("#labelEditorBox").val(sLabel.html());$("#userFrame").dialog('open');});box.attr({type:"text"});}else if(etypev=="email"){box=$("<input></input>");aele.eles[aele.count]={type:'email',label:$("#lab").val(),req:false};aele.count++;sLabel.dblclick(function(){eleAtFocus=divele;setContent(".eleEditor","#labelEditor");var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);$("#labelEditorRequiredBox").attr({checked:aele.eles[n].req});$("#labelEditorBox").val(sLabel.html());$("#userFrame").dialog('open');});box.attr({type:"text"});}else if(etypev=="password"){box=$("<input></input>");aele.eles[aele.count]={type:'password',label:$("#lab").val(),req:false};aele.count++;sLabel.dblclick(function(){eleAtFocus=divele;setContent(".eleEditor","#labelEditor");var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);$("#labelEditorRequiredBox").attr({checked:aele.eles[n].req});$("#labelEditorBox").val(sLabel.html());$("#userFrame").dialog('open');});box.attr({type:"password"});}else if(etypev=="checkbox"){box=$("<input></input>");aele.eles[aele.count]={type:'checkbox',label:$("#lab").val()};aele.count++;box.attr({type:"checkbox"});sLabel.dblclick(function(){eleAtFocus=divele;setContent(".eleEditor","#checkboxEditor");$("#textEditorBox").val(sLabel.html());$("#userFrame").dialog('open');});divele.attr({id:"ele"+elecount++});divele.append(box);divele.append(sLabel);divele.append($("<br/>"));$("#displayPan").append(divele);return;}
+divele.attr({id:"ele"+elecount++});divele.append(sLabel);divele.append(box);divele.append($("<br/>"));$("#displayPan").append(divele);});$("#toggledisp").click(function(){$("#mainbox").toggle('fast');$(".toggledispchild").each(function(){$(this).toggle('fast');});});});function labelEditorSetLabel(){if(document.getElementById("labelEditorBox").value=="")
+{alert('Label can\'t be empty!');return;}
+eleAtFocus[0].childNodes[0].innerHTML=document.getElementById("labelEditorBox").value;var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);aele.eles[n].innerHTML=eleAtFocus[0].childNodes[0].innerHTML;}
+function labelEditorSetLabel2(){if(document.getElementById("labelEditorBox").value=="")
+{alert('Label can\'t be empty!');return;}
+eleAtFocus[0].childNodes[1].innerHTML=document.getElementById("labelEditorBox").value;var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);aele.eles[n].innerHTML=eleAtFocus[0].childNodes[0].innerHTML;}
+function hideFrame(){$("#userFrame").dialog('close');}
+function labelEditorUpdateReq(){var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);aele.eles[n].req=$("#labelEditorRequiredBox").attr("checked");}
+function radioEditorSetLabel(){if(document.getElementById("radioEditorBox").value=="")
+{alert('Label can\'t be empty!');return;}
+eleAtFocus[0].childNodes[0].innerHTML=document.getElementById("radioEditorBox").value;var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);aele.eles[n].innerHTML=eleAtFocus[0].childNodes[0].innerHTML;}
+function submitForm(){for(i=0;i<aele.count;i++){aele.eles[i].position=$("#ele"+i).css("position");aele.eles[i].top=$("#ele"+i).css("top");aele.eles[i].left=$("#ele"+i).css("left");}
+aele.title=$("#formTitle").html();aele.slabel=$("#submitbutton").attr("value");var a=JSON.stringify(aele);var xmlhttp;if(window.XMLHttpRequest)
+{xmlhttp=new XMLHttpRequest();}
+else
+{xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");}
+xmlhttp.onreadystatechange=function()
+{if(xmlhttp.readyState==4&&xmlhttp.status==200)
+{document.body.innerHTML=xmlhttp.responseText;}
+else if(xmlhttp.readyState==4)
+document.body.innerHTML=xmlhttp.responseText;}
+xmlhttp.open("POST","/svg/saveform",true);xmlhttp.send('formdata='+a+'&title='+$("#formTitle").html()+'&slabel='+$("#submitbutton").attr("value"));}
+function removeCleanly(){var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);eleAtFocus.remove();for(i=n+1;i<elecount;i++){$('#ele'+i).attr({id:'#ele'+(i-1)});aele.eles[i-1]=aele.eles[i];}
+aele.count--;elecount--;aele.eles.splice(elecount,1);}
+function moveEleUp(){var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);if(n==0)
+{alert("Cant move Up.\nIt's already at top.");return;}
+var temp=document.getElementById("ele"+n).innerHTML;document.getElementById("ele"+n).innerHTML=document.getElementById("ele"+(n-1)).innerHTML;document.getElementById("ele"+(n-1)).innerHTML=temp;temp=ele.eles[n];ele.eles[n]=ele.eles[n-1];ele.eles[n-1]=temp;}
+function moveEleDown(){var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);if(n==elecount-1)
+{alert("Cant move Down.\nIt's at the bottom.");return;}
+var temp=document.getElementById("ele"+n).innerHTML;document.getElementById("ele"+n).innerHTML=document.getElementById("ele"+(n+1)).innerHTML;document.getElementById("ele"+(n+1)).innerHTML=temp;temp=ele.eles[n];ele.eles[n]=ele.eles[n+1];ele.eles[n+1]=temp;}
+function radioEditorAddRadio(){var divele=$("<div></div>");var labelx=$("</label>"+$("#radioEditorRadioAdder").val()+"</label>");labelx.click(function(){changeLabel($(this));});var n=parseInt(eleAtFocus.attr('id').match(/ele(\d+)/)[1],10);aele.eles[n].eles[aele.eles[n].count]=$("#radioEditorRadioAdder").val();aele.eles[n].count++;var radioele=$("<input type='radio'></input>");radioele.attr({name:(eleAtFocus[0].id+"_radio")});divele.append(radioele);divele.append(labelx);divele.append($("<br/>"));eleAtFocus.append(divele);}
+function changeLabel(ele){var lab=prompt("Enter new value");if(lab)
+ele.html(lab);}
+function setContent(class,id){$(class).hide();$(id).toggle('fast');}
+function setFormTitle(title){$("#formTitle").html(title);}
+function setSubmitLabel(label){$("#submitbutton").attr({value:label});}
+function sorting(id){$(id).sortable();$(id).disableSelection();}

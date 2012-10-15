@@ -1,0 +1,20 @@
+function startx(){var xmlhttp;if(window.XMLHttpRequest){xmlhttp=new XMLHttpRequest();}
+else{xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");}
+xmlhttp.onreadystatechange=function()
+{if(xmlhttp.readyState==4&&xmlhttp.status==200)
+{dispform(xmlhttp.responseText);}
+else if(xmlhttp.readyState==4)
+{document.body.innerHTML=xmlhttp.responseText;}}
+xmlhttp.open("GET",mylink,true);xmlhttp.send();}
+function dispform(res)
+{data=JSON.parse(res);$("#submitbutton").val(data.slabel);$("#formTitle").html(data.title);var count=data.count;var eles=data.eles;for(i=0;i<count;i++)
+{divele=$("<div></div>");if(eles[i].type=="text"){inp=$("<input></input>");inp.attr({type:"text",name:"ele"+i,id:"ele"+i});lab=$("<label></label>");lab.html(eles[i].label);divele.append(lab);divele.append(inp);divele.css({position:eles[i].position,top:eles[i].top,left:eles[i].left});$("#displayPan").append(divele);}else if(eles[i].type=="email"){inp=$("<input></input>");inp.attr({type:"text",name:"ele"+i,id:"ele"+i});lab=$("<label></label>");lab.html(eles[i].label);divele.append(lab);divele.append(inp);divele.css({position:eles[i].position,top:eles[i].top,left:eles[i].left});$("#displayPan").append(divele);}else if(eles[i].type=="password"){inp=$("<input></input>");inp.attr({type:"password",name:"ele"+i,id:"ele"+i});lab=$("<label></label>");lab.html(eles[i].label);divele.append(lab);divele.append(inp);divele.css({position:eles[i].position,top:eles[i].top,left:eles[i].left});$("#displayPan").append(divele);}else if(eles[i].type=="checkbox"){inp=$("<input></input>");inp.attr({type:"checkbox",name:"ele"+i,id:"ele"+i});lab=$("<label></label>");lab.html(eles[i].label);divele.append(lab);divele.append(inp);divele.css({position:eles[i].position,top:eles[i].top,left:eles[i].left});$("#displayPan").append(divele);}else if(eles[i].type=="label"){lab=$("<label></label>").attr({id:"ele"+i});lab.html(eles[i].innerHTML);divele.append(lab);divele.css({position:eles[i].position,top:eles[i].top,left:eles[i].left});$("#displayPan").append(divele);}else if(eles[i].type=="radio"){lab=$("<label></label>").attr({id:"ele"+i});lab.html(eles[i].label);divele.append(lab);for(var k=0;k<eles[i].count;k++)
+{labi=$("<label></label>");labi.html(eles[i].eles[k]);rad=$("<input></input>");rad.attr({type:"radio",name:"ele"+i,value:eles[i].eles[k],checked:"true"});divele2=$("<div></div>");divele2.append(rad);divele2.append(labi);divele.append(divele2)}
+divele.css({position:eles[i].position,top:eles[i].top,left:eles[i].left});$("#displayPan").append(divele);}else if(eles[i].type=="textarea"){lab=$("<label></label>");lab.html(eles[i].label);divele.append(lab);divele.append("<br/>");divele.append($("<textarea></textarea>").attr({name:"ele"+i,id:"ele"+i}));divele.append("<br/>");divele.attr({position:eles[i].position,top:eles[i].top,left:eles[i].left});$("#displayPan").append(divele);}if(eles[i].type=="date"){inp=$("<input></input>");inp.attr({type:"text",name:"ele"+i,id:"ele"+i});inp.datepicker();lab=$("<label></label>");lab.html(eles[i].label);divele.append(lab);divele.append(inp);$.datepicker.setDefaults($.datepicker.regional['']);divele.css({position:eles[i].position,top:eles[i].top,left:eles[i].left});$("#displayPan").append(divele);}
+if(eles[i].req&&eles[i].req==true)
+lab.html(lab.html()+"*");}}
+function verifyIt(){for(i=0;i<data.count;i++)
+{elei=$("#ele"+i)[0];if(data.eles[i].req&&data.eles[i].req==true&&elei.value==""){alert("Elements marked with * are required and cannot be blank!");return false;}
+if(data.eles[i].type=="text"){}else if(data.eles[i].type=="email"){if(!elei.value.match(/[^@]+[@][^@]+[\.]/))
+{alert("Email address is not valid!");return false;}}else if(data.eles[i].type=="date"){if(!elei.value.match(/\d\d\/\d\d\/\d\d\d\d/)){alert("Date must be of the format dd/mm/yyyy");return false;}}}
+return true;}

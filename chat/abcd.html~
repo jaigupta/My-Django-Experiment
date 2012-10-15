@@ -1,0 +1,6 @@
+<form action="/chat/sadasdrandom/" method="post">
+<input type="hidden" name="name" value="{{user.username}}"/>
+<input type="hidden" name="time" value="{{thistime}}"/>
+<input type="text" name="detail" cols=100 rows=5 maxlength=2></textarea>
+<input type="submit" value="Send">
+</form>

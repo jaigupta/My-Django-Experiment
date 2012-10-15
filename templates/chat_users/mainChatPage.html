@@ -1,0 +1,53 @@
+<html><head>
+<title>Chat with Strangers woooo.</title>
+<body onload="startLoader();"><div width=740 align="center">
+<script type="text/javascript" src="/site_media/mainchatpage_script.js"></script>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({appId: '{{appid}}', status: true, cookie: true,
+             xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol +
+      '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
+</script>
+<style type="text/css">
+.divScroll-1 {
+	height:300px;
+	width:730px;
+	overflow:auto;
+}
+a.l:hover{
+background: #6D86B7;
+text-decoration: none;
+}
+a.l {
+background: #6D81A0;
+line-height: 29px;
+padding: 2px 11px;
+}
+div.bluetype{
+background: #6D81A0;
+}
+</style>
+<script type="text/javascript">
+code="{{code}}";
+myname="{{myname}}";
+appname="{{appname}}";
+appid="{{appid}}"
+</script>
+<p style=" text-align: center;"><img src="/site_media/main_banner.gif" width=730 /><div width=730 class="bluetype" color=GREEN align="CENTER"><font color=BLUE size=2><a class="l" href="#" id="chatender" onclick="endc()" style="display:none;"><u>End this chat</u></a>   <a class="l" href="/chat/" >Relogin with different Nick</a>   <a class="l" href="/chat/randomzz/" id="refresher" style="display:none;">Refresh</a> <a class="l" href="#" id="reviel" onclick="tryreviel();" >Reviel Myself</a> <a class="l" href="#" onclick="poster();">Share</a><a class="l" href="#" onclick="Invite();">Invite Friends</a></div> 
+<div id="chatpart" width=730 height=300 class="divScroll-1" align="left" style="border : 2pt solid black;padding-left:5px;"><font size=2>
+<div id="line">Hi <FONT color="RED">{{myname}}</FONT>,Please wait while we connect you to someone...</div>
+<div id="temp"></div>
+<a name="bottom"></a>
+</font></div>
+<div id="send_btn">
+<div align='center'><font color=LIGHTGRAY> No users found till now..</div></font></div>
+</div>
+</body>
+</html>

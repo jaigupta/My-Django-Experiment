@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Creativity Test</title>
+</head>
+<script type="text/javascript" src="raphael.js"></script>
+<script type="text/javascript" src="colorwheel.js"></script>
+<script type="text/javascript">
+var activeele=null;
+var paper, toolbar, help;
+var cp2,c;
+var col="#ff0f0f";
+var background,title;
+var aele={};aele.n=0;aele.ele=[];
+window.onload = function () {
+toolbar=Raphael("upper",1000,110);
+	var out = document.getElementById("output"),
+		reg = /^#(.)\1(.)\2(.)\3$/;
+	cp2 = Raphael.colorwheel(890, 10, 100, "#eee");
+	cp2.onchange = function (clr) {
+		col=clr;
+		activeele.attr({"fill":clr});
+	};
+	// that’s it. Too easy
+var start = function () {
+    // storing original coordinates
+    this.ox = this.attrs.x;
+    this.oy = this.attrs.y;
+},
+move = function (dx, dy) {
+    // move will be called with dx and dy
+	help.attr("text",this.attrs.x+","+this.attrs.y+","+dx+","+dy);
+	if(this.ox+dx>0 && this.oy+dy>0)
+    this.attr({cx: this.ox+dx, cy: this.ox+dy});
+},
+up = function () {
+    // restoring state
+};
+paper=Raphael("pad",1000,500);
+background=paper.path("M1 1l998 1l0 498l-998 0l0 -498").attr("fill","#ffffff");
+background.click(function(){
+	if(activeele && activeele!=this)
+		activeele.setDisabled();
+	activeele=this;
+	cp2.color(this.attr("fill"));
+});
+activeele=background;
+background.setDisabled=function(){}
+toolbar.path("M1 1l998 1l0 109l-998 0l0 -109").attr("fill","#f3f3f3");
+title=toolbar.text(500,30,"Geometric Creativity Centre").attr({"font":"30px 'Arial'","fill":"#1111a0"});
+help=toolbar.text(50,-40,"");
+var t=toolbar.text(500,90,"Quadilateral").click(function(){
+c=paper.path("M50 50l50 0l0 50l-50 0").attr({"fill":"#f00","stroke":"#123"});
+makeItPoly(c);
+});
+var t=toolbar.text(275,90,"Circle").click(function(){
+	c=paper.circle(50,40,10);
+	c.attr({"fill":col,"stroke":"#123"});
+	c.drg=paper.circle(c.attrs.cx+c.attrs.r,c.attrs.cy,2);
+	c.drg.parent=c;
+	c.drg.attr({"fill":"#000","stroke":"#103"});
+	c.drg.hide();
+	c.click(function(){
+		this.drg.show();
+		if(activeele && activeele!=c)
+		activeele.setDisabled();
+		activeele=this;
+		loadColors();
+		this.drg.show();
+	});
+	c.drag(function(dx,dy){
+		//move function
+		this.attr({cx:this.ox+dx,cy:this.oy+dy});
+		this.drg.attr({cx:this.drgx+dx,cy:this.drgy+dy});
+	}, function(){
+	//start function
+		this.ox=this.attrs.cx;
+		this.oy=this.attrs.cy;
+		this.drgx=this.drg.attrs.cx;
+		this.drgy=this.drg.attrs.cy;
+	}, function(){
+	//up function\
+	});
+	c.drg.drag(function(dx,dy){
+		this.attr({cx:this.ox+dx});
+		this.parent.attr({r:this.pr+dx});
+	},
+	function(){
+		this.ox=this.attrs.cx;
+		this.pr=this.parent.attrs.r;
+	},
+	function(){
+	});
+	c.setDisabled=function(){
+		this.drg.hide();
+	}
+	aele.ele[aele.n]=c;
+	aele.ele[aele.n].type="circle";
+	aele.ele[aele.n].pos=aele.n;
+	aele.n++;
+});
+var t=toolbar.text(410,90,"Triangle").click(function(){
+c=paper.path("M50 50l30 30l-60 0").attr({"fill":col,"stroke":"#123"});
+makeItPoly(c);
+});
+var t=toolbar.text(205,90,"Text").click(function(){
+var te=prompt("Enter your text");
+if(!te || te=="")return;
+c=paper.text(50,50,te).attr({"fill":col});
+c.drg=paper.circle(c.attr("x"),c.attr("y")+Number(c.attr("font").substring(0,2)),2).attr({"fill":"#000","stroke":"#000"});
+c.drg.parent=c;
+c.drag(function(dx,dy){
+	this.attr({x:this.olx+dx,y:this.oly+dy});
+	this.drg.attr({cx:this.attr("x"),cy:this.attr("y")+Number(this.attr("font").substring(0,2))});
+},function(){
+	this.olx=this.attr("x");
+	this.oly=this.attr("y");
+},function(){
+});
+c.drg.drag(function(dx,dy){
+	if(this.ols+dy>80||this.ols+dy<7)return;
+	this.attr({cy:this.oly+dy});
+	this.parent.attr({"font":this.ols+dy+this.parent.attr("font").substring(2)});
+},function(){
+	this.olx=this.attr("cx");
+this.oly=this.attr("cy");
+this.ols=Number(this.parent.attr("font").substring(0,2));
+},function(){
+});
+c.click(function(){
+activeele.setDisabled();
+activeele=this;
+cp2.color(this.attr("fill"));
+this.drg.show();
+});
+c.setDisabled=function(){
+	this.drg.hide();
+}
+aele.ele[aele.n]=c;
+aele.ele[aele.n].type="text";
+aele.ele[aele.n].pos=aele.n;
+aele.ele[aele.n].text=te;
+aele.n++;
+});
+var t=toolbar.text(340,90,"Line").click(function(){
+c=paper.path("M50 50l30 30").attr({"fill":col,"stroke":"#123"});
+makeItPoly(c);
+});
+var t=toolbar.text(600,90,"Pentagon").click(function(){
+c=paper.path("M50 50l20 20l-10 20l-20 0l-10 -20").attr({"fill":col,"stroke":"#123"});
+makeItPoly(c);
+});
+var t=toolbar.text(700,90,"Hexagon").click(function(){
+c=paper.path("M50 50l20 20l0 20l-20 20l-20 -20l0 -20").attr({"fill":col,"stroke":"#123"});
+makeItPoly(c);
+});
+var t=toolbar.text(800,90,"Polygon").click(function(){
+	var n=Number(prompt("Enter no of points"));
+	if(n<2 || n>20){
+		alert("n must be between 2 and 20");
+		return;
+	}
+	s="M50 50";
+	for(j=0;j<n-1;j++)
+		s+="l10 10";
+	c=paper.path(s).attr({"fill":col,"stroke":"#123"});
+	makeItPoly(c);
+});
+
+var t=toolbar.text(140,90,"Curve").click(function(){
+	var n=Number(prompt("Enter no of points"));
+	if(n<2 || n>20){
+		alert("n must be between 2 and 20");
+		return;
+	}
+	s="M50 50";
+	for(j=0;j<n-1;j++)
+		s+="t10 10";
+	c=paper.path(s).attr({"fill":col,"stroke":"#123"});
+	makeItPoly(c);
+});
+var t=toolbar.text(70,90,"Help").click(function(){
+alert("F - Brings the element to front of other elements\nU - Increases the opacity of the element\nL - Decreases the opacity of the element\nColor picker on top right sets the color of the element\nDel - Deletes the element");
+});
+};
+function loadColors(){
+	cp2.color(activeele.attr("fill"));
+};
+function makeItPoly(c){
+	if(activeele)
+	activeele.setDisabled();
+	activeele=c;
+	a=c;
+	p=c.attrs.path;
+	a.drg=[];
+	if(p)
+	for(var i=0;i<p.length;i++){
+		var drg=paper.circle(p[i][1],p[i][2],2).attr({"fill":"#000","stroke":"#000"});
+		a.drg[i]=drg;
+		drg.pari=i;
+		drg.drag(function(dx,dy){
+			this.attr({cx:this.ox+dx,cy:this.oy+dy});
+			help.attr("text",c.attr("path")+" "+this.par);
+			c.attrs.path[this.pari][1]=this.px+dx;
+			c.attrs.path[this.pari][2]=this.py+dy;
+			c.attr("path",c.attr("path"));
+		},
+		function(){
+			this.ox=this.attrs.cx;
+			this.oy=this.attrs.cy;
+			this.px=c.attrs.path[this.pari][1];
+			this.py=c.attrs.path[this.pari][2];
+		},
+		function(){
+		});
+	};
+	c.drag(function(dx,dy){
+		this.translate(-this.ox,-this.oy);
+		this.translate(this.ox=dx,this.oy=dy);
+		for(var i=0;i<this.drg.length;i++)
+			this.drg[i].attr({cx:this.odrx[i]+dx,cy:this.odry[i]+dy});
+		},
+		function(){
+			this.ox=0;
+			this.oy=0;
+			this.odrx=[];
+			this.odry=[];
+			for(i=0;i<this.drg.length;i++){
+				this.odrx[i]=this.drg[i].attr("cx");
+				this.odry[i]=this.drg[i].attr("cy");
+			}
+		},
+		function(){
+		});
+	c.setDisabled=function(){
+		for(i=0;i<c.drg.length;i++)
+			c.drg[i].hide();
+	}
+	c.click(function(){
+		if(activeele!=null && c!=activeele){
+			activeele.setDisabled();
+			for(i=0;i<c.drg.length;i++)
+				c.drg[i].show();
+		}
+		activeele=this;
+		loadColors();
+	});
+	aele.ele[aele.n]=c;
+	aele.ele[aele.n].type="path";
+	aele.ele[aele.n].pos=aele.n;
+	aele.n++;
+};
+document.onkeyup=function(event){
+	if(activeele==null || activeele==background)return;
+	switch(event.keyCode){
+		case 46:
+			activeele.hide();
+			if(activeele.drg.constructor.toString().indexOf("Array")!=-1)
+			{
+				for(i=0;i<activeele.drg.length;i++)
+				activeele.drg[i].hide();
+				activeele=background; 
+			}else{
+			activeele.drg.hide();}
+			for(i=aele.pos;i<aele.n-1;i++){
+				aele.ele[i]=aele.ele[i+1];
+				aele.ele[i].pos--;
+				}
+			aele.ele=aele.ele.slice(0,--aele.n);
+			break;
+		case 70:
+			activeele.toFront();
+			if(activeele.drg.constructor.toString().indexOf("Array")!=-1)
+			{
+				for(i=0;i<activeele.drg.length;i++)
+				activeele.drg[i].toFront();
+				activeele=background; 
+			}else{
+			activeele.drg.toFront();
+			for(i=aele.pos;i<aele.n-1;i++){
+				aele.ele[i]=aele.ele[i+1];
+				aele.ele[i].pos--;
+				}
+			}
+			aele.ele[aele.n-1]=activeele;
+			break;
+		case 85:
+			t=activeele.attr("opacity");
+			if(!t) t=1;
+			else if(t>=1)return;
+			activeele.attr("opacity",t+0.05);
+			break;
+		case 76:
+			t=activeele.attr("opacity");
+			if(!t) t=1;
+			else if(t<=0.05)return;
+			activeele.attr("opacity",t-0.05);
+			break;
+	}
+};
+function submitdata(){
+	document.getElementById("data").value=document.getElementById("pad").innerHTML;
+}
+</script>
+<div align="left">
+<div id="upper" style="position:absolute;left:50px;"></div>
+<div id="pad" style="position:absolute;left:50px;top:110px;">
+</div>
+<br/><form style="position:absolute;left:400px;top:610px;" action="/creative/submit/" method="POST"><input id="data" name='myimage' type="hidden" value="" /><input type="submit" onclick="submitdata();" style=" background-color:#CCCCCC;" value="Finished editing image? Click here to proceed" /></form></div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+body, textarea {
+    font-family:sans-serif;
+    font-size:13px;
+}
+</style>
+</head>
+<body>
+<div align="center" style="background-color:#000000;">
+<div style="width:800px; border:1px solid; padding:10px; background-color:#F6F6F6;" align="left">
+<p lang="en" xml:lang="en" style="text-align:center;"><b style="font-size:23px;"><u>Proposal List:</u></b></p>
+<p lang="en" xml:lang="en">For the pupose of demostration i have made certain demos.</p>
+<p lang="en" xml:lang="en">The forms can be created at: <a href="http://www.baatooni.com/site_media/jai.html">http://www.baatooni.com/site_media/jai.html</a><br/> The created form are present at:<a href="http://www.baatooni.com/svg/allform">http://www.baatooni.com/svg/allform</a><br/>The Worldcup 2011 form at the last has been filled many times and i will refer to it throughout.</p>
+<p lang="en" xml:lang="en">1. <b>Positioning elements with drag feature</b>. The label of any element can be dragged to start positioning the element. This will enable the user to position elements in the form anywhere on the workspace.(Sample present in demo.) To be improved so that the element cannot be dragged outside the user viewable frame.</p>
+<p lang="en" xml:lang="en"> <b>Implementation</b>: While setting the drag 'handle' in 'draggable()', properly set the 'containment' attribute (in most cases to 'parent').</p>
+<p lang="en" xml:lang="en">2. <b>Reordering elements</b> in which we have constraints on movement of the objects. For example, after you create a radio box and add some radio buttons, You can reorder the radios by dragging them. However the radios can't be moved anywhere on the form. They can only be moved in group by dragging their main heading label.(Present in the demo)</p>
+<p lang="en" xml:lang="en"><b>Improvements</b>: Allow the user if the radio buttons should be arranged horizontally or vertically. The User can use the rearranging property without allowing to seperate them.</p>
+<p lang="en" xml:lang="en"><b>Implementation</b>: The dispaly for horizontal alignment should be removed from inline to block type. Then dragging should be allowed in constrained region by properly setting the 'containment' attribute.</p>
+<p lang="en" xml:lang="en">3. <strong>Asynchronous loading of elements: </strong>There are UI elements which may slow down the loading of the page. Hence, these features can be loaded asynchronouly after the form has loaded most of the required content to present user with a basic editing layout. We can also try loading some features only if the user wants to load them.</p>
+<p lang="en" xml:lang="en">4. <b>Display context menu to edit elements on a right click</b>. The user should get a shortcut menu upon click where he can delete elements and can edit other features too.</p>
+<p lang="en" xml:lang="en"> <b>Implementation</b>: There are many easy approaches to it but the best and fastest i could find was the context menu plugin to jQuery. As we have used jQuery for whole of our project, its better to use this than switching to some other UI since we have to care about performance and speed. This being a plugin to our existing imported library is light to serve our purpose.</p>
+<p lang="en" xml:lang="en"> The plugin page is: <a href="http://www.javascripttoolbox.com/lib/contextmenu/">http://www.javascripttoolbox.com/lib/contextmenu/</a></p>
+<p lang="en" xml:lang="en">
+The interface provided by them for adding these functionalities is very good and easily implementable. We can load this feature asynchronously.
+</p>
+<p lang="en" xml:lang="en">5. <b>Addition of a color picker widget</b> so that user can choose colors for different elements of the form such as background color, Title color etc. This can also be used as an input element for people.</p>
+<p lang="en" xml:lang="en"><b>Implementation</b>: Again as we opt for a simple color picker plugin for jQuery. This is light yet powerful and fully functional for our use.</p>
+<p lang="en" xml:lang="en">This is the plugin i use for this purpose. <a href="http://www.eyecon.ro/colorpicker/">http://www.eyecon.ro/colorpicker/</a></p>
+<p lang="en" xml:lang="en">Its better to use this feature asynchnouly too.</p>
+<p lang="en" xml:lang="en">6. <b>Addition of richText Editor</b>: This would allow the form creator to add to the label of elements with Formatted text with images etc(which are frequently required in some forms as question may have images). Images can either be linked to other sites or uploaded in the our site.</p>
+<p lang="en" xml:lang="en"> <b>Implementation</b>: The following jQuery UI serves our purpose.</p>
+<p lang="en" xml:lang="en"> <a href="http://plugins.jquery.com/project/lwRTE">http://plugins.jquery.com/project/lwRTE</a></p>
+<p lang="en" xml:lang="en"> 
+This too should be loaded asynchronously to speed up the page loading process.</p>
+<p lang="en" xml:lang="en">7. <strong>Dependent Elements:</strong> I would also like to add support for dependent elements. For example, There are two combo boxes. The valid contents in the second one depends on the content in the first one. This will ofcourse be added by handling the onchange event of the combo box. Similarly there are forms which are divided into several parts. If time permits then we can have this feature too by making the form tabbed and allowing progressing only if one part is completly filled and checked for validity.</p>
+<p lang="en" xml:lang="en">8. <b>Custom Templates</b>: These are predefined css templates which can be used to set the UI colors and layouts in a single go. This will not only save space as each form will just link to these template instead of seperately defining them for each form but also provide a big ease to the user(form creator).The Framework can be easily made in such a manner that more templates can be extended without affecting the precious forms.</p>
+<p lang="en" xml:lang="en">9. <b>Resizing</b>: The form elements like the size of the entire form etc should be resizable by providing a drag handle on the boundary and at the corners. Same should be the case with other possible elements where we may feel the necessity. As an example, see the demo where textarea and form size is resizable.</p>
+<p lang="en" xml:lang="en">10. <b>Tool Tip</b>: There are situations when form creators need to give some hint of what should be the input in a form field. This would enable the user to add tooltips as easily as possible.</p>
+<p lang="en" xml:lang="en">We may use this plugin to jQuery. Its light.	<a href="http://docs.jquery.com/Plugins/Tooltip/tooltip">http://docs.jquery.com/Plugins/Tooltip/tooltip</a>. But as we dont need any fancy tips, we can avoid it and switch to the simple tooltip provided in jQuery.</p>
+<p lang="en" xml:lang="en">11. <b>Input of Numbers</b>: These fields will be interpreted as number. Restrictions can be imposed on the possible inputs. In a special case when the values can lie only in a fixed range, the user may give the [min,max] and set an option to display a slider for input when the input field gains focus. The number field will have statistical analysis on them like mean, statndard deviation or can also have different graphs plotted for output. </p>
+<p lang="en" xml:lang="en"> <b>Implementation</b>: Number fields can be checked for validity on derver as well as client side. The slider is already present in the Jquery and can be easily integrated.</p>
+<p lang="en" xml:lang="en">12. <strong>Validity Of Input: </strong>We can validate the input on form submission at client as well as server side. Some validations are already added to the form on basis of type of input. As an example in the demo the email field and Date fields are checked for validation against some predefined regular expressions. We need to assign some regular expression checks for other possible inputs. Also checks like the input to a combo box or radio button is amongst its option as we have to necessarily deal with the DOM manipulations. Hence the type of field will decide the type of check to be done.</p>
+<p lang="en" xml:lang="en">13. <b>Export of data</b>: The data of form submissions can be exported to Excel , CSV or pdf format. This may also include exporting the pie and graph chart. (I have already added support for downloading the excel and CSV format in the demo). For the Excel file dynamic creation, I used the xlwt library which is the stable release of pyexcelerator. It provides easy creeation of excel sheets with formatting. The files can be downloaded in demo from the review <a href='http://www.baatooni.com/svg/reviewform/?id=1'>page</a> </p>
+<p lang="en" xml:lang="en"> Download the excel format of the worldcup ferver form result <a href="http://www.baatooni.com/svg/excel.xls?id=1">here</a>.</p>
+<p lang="en" xml:lang="en"> Download the CSV format of the worldcup fever form result <a href="http://www.baatooni.com/svg/csv.csv?id=1">here</a>.</p>
+<p lang="en" xml:lang="en">14. <b>Analysis of data based on different views</b>. For example:</p>
+<p lang="en" xml:lang="en">i) <b>Group on basis of form submission</b>. Each form submission can be viewed seperately. This would be useful in cases where we want to know the submission of each of the user.</p>
+<p lang="en" xml:lang="en">ii) <b>Group on basis of the Fields</b>: The data of submission is grouped for analysis on basis of fields. This is useful in cases like analysis of a polling result. Some part of this has been implemented. For now the checkbox results are analysed through a YES/NO bar graph. and the radio button polls are analysed on basis of pie chart distribution. They lack labeling in the output which needs implementation. For Number field similarly possible options can be to show the mean and standars deviation.</p>
+<p lang="en" xml:lang="en">15. <b>Creation of views for user for easy generation of Forms</b>. By views I mean templates of some standard forms. For now the main such example would be Poll View where elements are mainly the checkboxes for YES/NO polling and radio boxes for multioption polling. After-Submission views of the elements can also be customised so that polling View only has analysis on basis of Piecharts and bar Graph(may be we can implement some line graph too for something like no of polls(or form submissions) Vs time axis.) Another such view will be custom generation of Quizes. Teachers can Make Quiz Papers. They will also be required to enter the correct answer in this case. Finally the processed results can be made to have the marks (may be we can allow them to downlad an excel formatted marks list) obtained by each student and Performance of the class.</p>
+<p lang="en" xml:lang="en"> <b>Backend Implementation</b>:</p>
+<p lang="en" xml:lang="en"> 16. For backend we can have two tables:</p>
+<p lang="en" xml:lang="en"> Table 1 has the following fomat:</p>
+<p lang="en" xml:lang="en">       || Id || Title || Json String of the fields || No of submissions || Date of creation || last date of submission ||  Id of creator ||</p>
+<p lang="en" xml:lang="en"> Table 2 has following fomat:</p>
+<p lang="en" xml:lang="en">       || Id of user who submitted the form || Foreign key to Table 1 || Unique identity of field || Value of the field ||</p>
+<p lang="en" xml:lang="en"> <b>Advantages of the model</b>:</p>
+<p lang="en" xml:lang="en"> 1. <b>Fexibility</b>: The proposed model is highly flexible in terms of the adding new features to existing form elements or adding a new type of form element. As this would not require editing anypart of the database. We just need to store it together with the json string and then parse it as we need. The new variable will be present in it.</p>
+<p lang="en" xml:lang="en"> 2. <b>Backward Compatibility</b>: If we add some features, then as we are not adding a new table column etc, we can check easily in the parsed string which data is present and not. In older versions, the database's json data will have no field in that part and hence we can either switch to default for that field or ignore it as required.</p>
+<p lang="en" xml:lang="en"> 3. <b>Query Response Time</b>: As the no of rows go on increasing with the no of submissions of the form, the queries may take time after the no of rows increase to a very large number. For this, we can have a scheduled time after which a form submission is stopped and also a time after which the form is completely deleted from the server(though some forms may not have any such time). After a form submission is stopped the form needs no more editing. Hence, we can have them stored in some NoSQL database like mongodb (thanks to adam and dhruv for the idea). MongoDB speeds up the process to a lot extent. Also integration of mongodb with django is very easy through the opensource django project on:</p>
+<ol start="5">
+  <p lang="en" xml:lang="en"><a href="https://github.com/hmarr/django-mumblr">https://github.com/hmarr/django-mumblr</a></p>
+</ol>
+</div></div>
+</body>
+</html>

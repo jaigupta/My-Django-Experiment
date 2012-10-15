@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>My Form</title>
+<link href="/site_media/clientstyle.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="startx();">
+<link href="/site_media/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/site_media/jquery.min.js"></script>
+<script type="text/javascript" src="/site_media/json2.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js" type="text/javascript"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/external/jquery.bgiframe-2.1.2.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/i18n/jquery-ui-i18n.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
+<script type="text/javascript" src="/site_media/templatejs.js"></script>
+<script type="text/javascript">
+mylink="/svg/getform/?id={{id}}";
+</script>
+<div id="mainBody">
+<div style="border:1px solid; background-color:#F4F4F4;">
+<form action="/svg/submitform/?id={{id}}" method="POST">
+<div id="header" style="padding-top:10px;">
+<div id="formTitle" align="center">Sample Form</div><br/>
+</div>
+<div id="displayPan">
+</div>
+<div id="footer" align="center">
+<input id="submitbutton" type="submit" value="submit" onclick="return verifyIt();"/>
+</div>
+</form>
+</div>
+</div>
+</body>
+</html>

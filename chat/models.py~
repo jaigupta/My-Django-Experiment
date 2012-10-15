@@ -1,0 +1,10 @@
+from django.db import models
+
+class newchat(models.Model):
+	u1=models.CharField(max_length=25)
+	u2=models.CharField(max_length=25)
+
+class chindi(models.Model):
+	name=models.CharField(max_length=25)
+	thistime=models.DateTimeField()
+	detail=models.CharField(max_length=5000)

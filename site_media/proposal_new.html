@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Proposal-Jai Prakash Gupta</title>
+<style type="text/css">
+body, textarea {
+    font-family:sans-serif;
+    font-size:13px;
+}
+</style>
+</head>
+<body>
+<div align="center" style="background-color:#000000;">
+<div style="width:600px; border:1px solid; padding:10px; background-color:#F6F6F6;" align="left">
+  <div align="center"><font size="+2"><u> Custom Web Form Generation Proposal</u></font></div><br/>
+ 
+  <p><strong>UPDATE ON THE BACKEND IMPLEMENTATION:<br />
+  </strong>In my proposal I suggested using a a single table for actual data of the form. But that might go ineffcient in cases when at times there are a large no of forms active and Hence, none of them can actually be sent to the NOSQL database for storing. For the same I suggest the following implementation.</p>
+  <p>In the first table i would like to keep it same and store the private and public JSON string as this is very fast regarding the serving of the form for filling purpose. <br />
+  I would now not have a second table as suggested before. Instead in the form row in table1 I will have a column for storing the name of the table in which the form data for that concerned form is stored. That means i would have different copies of the table2. The table name would be generated dynamically on the basis, if the last table has lesser no of rows filled at that time. If the last table has less no of rows, We can put the the data in same table else create a new table. and accordingly set it in table1 for that form so that it is easy to refer which table needs to be opened for serving the concerned form.</p>
+  <p>While creating the form, The creator is asked for the no of form submissions he expects. </p>
+  <p>    Serving the form is fast due to the JSON strings in table1. This also keeps its flexibility intact to add new features as discussed in original proposal. The Private string also keeps the feature to provide powerful data validity intact. The additional feature we get is that as the forms are clustered in groups we get lesser no of Tables created. As the user tells the no of form submissions he expects, This would be useful in deciding in whether a new table should be created for the form or stored in the previous table. As the user gives an expectation of the number of form submissions, this would also help in preventing any form spamming as the creator may be warned that the no of submissions is going much above the expected number and the form submission can be temporarily held down ( This is other than showing the captcha when there is a huge traffic from a given IP ).</p>
+  <p>MongoDB supports does not support compression but HBase (another NOSQL database) supports compression. Hence HBase might be preferred to save space.</p>
+  <p>In my experiences sorry that I gave a wrong link to my facebook app which connects two people. The actual link is <a href="http://apps.facebook.com/baatooniapp" target="_blank">http://apps.facebook.com/baatooniapp</a>. The site <a href="http://www.baatooni.com">www.baatooni.com</a> is currently hosting another of my webapps which enables users to ddraw shapes and save them all using javascipt and django backend.</p>
+  <p><strong>ORIGINAL PROPOSAL:</strong></p>
+  <p><strong>Name: </strong>Jai Prakash Gupta<br/>
+      <strong>E-Mail:</strong> sayhellotojai@gmail.com, jai.gupta@cse.iitkgp.ernet.in<br/>
+      <strong>Phone Number:</strong> +91-800-1024-391<br/>
+      <strong>School: </strong>Indian Institute of Technology, Kharagpur<br/>
+    My exams would be ending on 29th of April. I would be completely free after 30th April that is from the begining of May month over which I would like to participate and code for this proposal. I would be staying in college throughout my summer ie, the GSOC period.</p>
+  <p><strong>My Experience with Python and Django: </strong> Amongst the different projects I did in my college, I gained a lot of experience in Python. Starting with it, <br/>&nbsp;&nbsp; I made a Django app which connects different people around the world when two people Login to the app. The app connects them for an anonymous chat. The app was later converted to a Facebook app with the same backend in Django with certain additional Facebook specific features. The app is running at <a href='http://www.baatooni.com' >http://www.baatooni.com</a> or on facebook <a href='http://apps.facebook.com/baatooniapp'>here</a>.<br/>
+&nbsp;&nbsp;  I also have a good experience with other social Network APIs such as the Facebook, Flickr and Twitter API. For the Complex Network and Research Group in our college, I made a Python Crawler to crawl through Flickr accounts to gather information about user, his Friends, his Uploaded Pics, their Tags etc using many heuristics to speed up the process. The Information was later used for processing to analyse the profiles. We are also working now to crawl the Twitter pages using the webbrowser,urllib and other libraries as Twitter API has certain limits on the number of requests sent per hour.<br/>
+&nbsp;&nbsp;  In process of learning Django, I also made an app to create a forum backend for a website but found many opensource project which were better and used them instead. It was then that i learnt about the powerful Django Templates and their tags though Django 1.3 includes much more powerful template tag than its previous versions. Hence I have a good expirience with Django, it's libraries and using its templates.  </p> 
+  <p><strong>My Experience with other Programming languages</strong><br/>
+&nbsp;&nbsp;  I have a good knowledge in C,C++,Java. In my Algorithms and Programming and Data Sructures Course, we were taught C to a great extent. Here I also learnt about implementing various Advanced Algorithms and Using some of the efficient Data Structures. I also worked to develop a versioning file system in Linux. The file system was built upon the FUSE layer implementing some of the advanced features of GIT version control system.<br/>
+&nbsp;&nbsp;  I have a good experience with C++ too. I have made various small applications in C++. One of the most important being the implementation of a simulator in C++ for the Robosoccer event (in which we designed Robots to play soccer fully automated having no human interference). A simulator for it was highly needed which I designed in <b> C++</b> using the <b>Qt</b> library. The Qt Library was also helpful in socket communication using the google protocol buffers.<br/>
+&nbsp;&nbsp;  For my experience with Java, I came to know the real powers of Java and its Object Oriented Features only after my Software Engineering Course. I have made many Applications in Java using its various packages also using the Java Swing to develop the User Interfaces. I also have a good knowledge of developing applets.<br/>
+&nbsp;&nbsp;  I also have a good experience with HTML, PHP, javascript, jQuery, FACEBOOK API, Flickr API, Twitter API, YQL, YUI and Yahoo's BOSS API. I designed a Google Chrome plugin for the HACKU competition organised by YAHOO in our college which aimed to provide an easy interface to the various social networking sites in a small box which opened as a plugin in Google Chrome. We parsed mainly the mobile sites of these social network sites to gather information and display them in the popup page. I also made a part of my college's website where i mostly worked to a add new section about the activities going on in our college. I also helped in translating the Green Stone opensource library management system to our local language (Hindi).</p>
+  <p><strong>Software Engineering:</strong> I took the course on Software Engineering where I gained experience on Object Oriented Programming, Software Designing including Use Case Diagrams, Class Diagrams, Sequence Diagram, Collaboration Diagram etc. Here I also gained experience on different other aspects as designing, coding, testing and working according to standards following the coding guidelines etc.. I had a project to design a full-fledged software with its documentation and all the diagram. We gained experience in drawing the same using some efficient tools like Magic Draw which ofcourse made code generation very easy.</p>
+  <p>While coding for my Robosoccer project I had been using SVN version control as it is easily integrable with Visual Studio through the Visual SVN plugin. In my project in developing a versioning file system I gained a good experience mainly with GIT.</p>
+  <p>I use both Ubuntu and Windows as I have worked on projects which are specific sometimes to Linux and sometimes to Windows. As switching to each other is difficult, I have also used Cygwin on Windows for Linux Environment and Wine on Linux for Windows environment. I have also used Ubuntu on a virtual machine setup on Windows. I have also worked with Fedora but haven't experimented on it much.</p>
+  <p>Learning Unlimited provides a platform for learning to the school student. A Platform where students can learn out of the course schedules. Something which cant be taught at school. Its a bigger and much advanced platform of what I with a group of friends had once planned to develop because wee realize of its great scope in INDIA. Hence, It will be really nice to work with the Learning Unilimited Community to work with them and expand the goodwork.</p>
+  <p>As I will be completely free during my summers, I can spend around 55-60 hours or surely even more during my summers. I would be present through out my summers starting from the beginning of May(as my semester exams are in the last two weeks of April). During the months of July and August however I will have my classes running and can spend a little more than aound 40 hours per week. I would be readily available on email, IRC, facebook, phone. I will have no problem in video-chat or  in-person contact. I would prefer getting information in smaller pieces and ask whenever i need some help but will also be comfortable with long detailed communications.</p>
+  <p>As I had a good experience in Python and Django, I wished to do something with them. I felt interest in the Custom web-form generation idea and started to prepare for it. As I got more in touch with the idea, I came up with a working demo with some feature(though not an impressive UI) but I have a lot of plans to improve upon the UI. Learning Unlimited is a sort of platform in which i already had interest in. Hence I wish to join the community and work for them. Working with google forms would give much less power of validation of inputs, Hence I propose to write our own custom webform generation feature. As I have a good experience with Python and Django, I would be easily able to achieve the goal of the project as I have presented a working demo to show the same.<br />
+  The project finally will not only be used for simple form purposes but many other uses. The major of them would be that a teacher sets the Question paper of the Test on the site. If the paper is objective the marks are given as soon as the test ends. But if the paper is subjective, i.e. their are text boxes/textarea to answer, The teacher can later review the submissions in his profile.</p>
+  <p> The primary use cases of the project in the most summarised format would be <br/>
+  1. To create the form<br/>
+  Prmary Actor: Teacher or Others who need to create a form.<br/>
+  2. Fill out the form<br/>
+  Primary Actor: Student or other intended audience.<br/>
+  3. Analyse the form<br/>
+  Primary Actor: The form creator<br/>
+  </p>
+  <p lang="en" xml:lang="en" style="text-align:center;"><b style="font-size:23px;"><u>Proposal List:</u></b></p>
+<p lang="en" xml:lang="en">For the pupose of demostration i have made certain demos.</p>
+<p lang="en" xml:lang="en">The forms can be created at: <a href="http://www.baatooni.com/site_media/jai.html">http://www.baatooni.com/site_media/jai.html</a><br/> 
+  The created form are present at:<a href="http://www.baatooni.com/svg/allform">http://www.baatooni.com/svg/allform</a><br/>
+  The Worldcup 2011 form at the end of the page has been filled many times and i will refer to it throughout.</p>
+<p lang="en" xml:lang="en">0. <strong>Creating the form in demo: </strong>The form creation is tabbed to contain a step wise presentation of what to do for creating a working form. Though one can follow any order, It is advised to go step by step through the three tabs.<br />
+Tab 1: The first tab contains a way to set the form Title<br />
+Tab 2: Here you can add elements and edit them. Drag with the label to postion them. Double click the label to edit them. <br />
+Tab 3: Here you finally give a name to your submit button. and then click the finish button to submit the form so that is can posted. You would we presented with a link which you can share so that others can directly open and fill the form.<br />
+One can also Hide the editing toolbar to get a real look of how the the form will look after getting finalised. This is inspired from editing your blog at blogspot.com. I plan to change the layout of the page to same type.</p>
+<p lang="en" xml:lang="en">1. <strong>Storing attributes in a JSON object: </strong>For the various attribute of the document element, I would store them in a JSON object. These JSON object will stores the required properties which will be served as such for rendering the form for submission. These objects are stored after using the stringify operation. As we have easy features to parse them in javascript (for front-end) and also in django(for backend). In the demo, I have already used this and it works good. We can store the same into two parts. One containing the form public data which would be used for rendering the form and the other containing the private data which would be present only in backend and used for validation checking etc.</p>
+<p lang="en" xml:lang="en"><strong>Implementation: </strong>While changing any element store their property in the json object too. Then stringify() the object and store in the database. Also JSON.parse() can be used for converting string to JSON object. At backend we can import the simplejson library and use the loads() and dumps() method to achieve the same functionality.</p>
+<p lang="en" xml:lang="en">2. <b>Positioning elements with drag feature</b>. The label of any element can be dragged to start positioning the element. This will enable the user to position elements in the form anywhere on the workspace.(Sample present in demo.) To be improved so that the element cannot be dragged outside the user viewable frame.</p>
+<p lang="en" xml:lang="en"> <b>Implementation</b>: While setting the drag 'handle' in 'draggable()', properly set the 'containment' attribute (in most cases to 'parent'). The draggable feature is already implemeted using, <em>$(element).draggable();</em> we just need to set it properly with the containment attribute. That means, <em>$(element).draggable({handle:'appropriate div'});</em> This will restrict the user from dragging the element outside the draggable region.</p>
+<p lang="en" xml:lang="en">3. <b>Reordering elements</b> in which we have constraints on movement of the objects. For example, after you create a radio box and add some radio buttons, You can reorder the radios by dragging them. However the radios can't be moved anywhere on the form. They can only be moved in group by dragging their main heading label.(Present in the demo)</p>
+<p lang="en" xml:lang="en"><b>Improvements</b>: Allow the user if the radio buttons should be arranged horizontally or vertically. The User can use the rearranging property without allowing to seperate them.</p>
+<p lang="en" xml:lang="en"><b>Implementation</b>: The dispaly for horizontal alignment should be removed from inline to block type. Then dragging should be allowed in constrained region by properly setting the 'containment' attribute. If the alignment is vertical we arrange it into a list in the div element and then run <em>$('element').sortable();</em> But if the alignment is horizontal, the radio buttons will be   hoizontal draggable present in the same div element which will be their containment div.<em> $('element').draggable({axis:'x',containment:'parent'});</em></p>
+<p lang="en" xml:lang="en">4. <strong>Asynchronous loading of elements: </strong>There are UI elements which may slow down the loading of the page. Hence, these features can be loaded asynchronouly after the form has loaded most of the required content to present user with a basic editing layout. We can also try loading some features only if the user wants to load them.</p>
+<p lang="en" xml:lang="en">Implementation: There can be a button for user to switch to advanced feature mode where some fo the features like rich text editor and color picker can be given as most of the forms wont be requiring it always. The feature would be provided by loading the script tags in later in <em>$(document).ready();</em> function.</p>
+<p lang="en" xml:lang="en"><em>a=$(&quot;&lt;script&gt;&lt;/script&gt;&quot;).attr({'type':'text/javascript',src='abc.js',async:'true'});<br />
+  $(element).appendChild(a);<br />
+    or to align them in the begining:<br />
+      b=$('script')[0];<br />
+  b.parentNode.insertBefore(a,b);</em><br />
+</p>
+<p lang="en" xml:lang="en">5. <b>Display context menu to edit elements on a right click</b>. The user should get a shortcut menu upon click where he can delete elements and can edit other features too.</p>
+<p lang="en" xml:lang="en"> <b>Implementation</b>: There are many easy approaches to it but the best and fastest i could find was the context menu plugin to jQuery. As we have used jQuery for whole of our project, its better to use this than switching to some other UI since we have to care about performance and speed. This being a plugin to our existing imported library is light to serve our purpose.</p>
+<p lang="en" xml:lang="en"> The plugin page is: <a href="http://www.javascripttoolbox.com/lib/contextmenu/">http://www.javascripttoolbox.com/lib/contextmenu/<br />
+</a>The interface provided by them for adding these functionalities is very good and easily implementable. We can load this feature asynchronously.</p>
+<p lang="en" xml:lang="en">6. <b>Addition of a color picker widget</b> so that user can choose colors for different elements of the form such as background color, Title color etc. This can also be used as an input element for people.</p>
+<p lang="en" xml:lang="en"><b>Implementation</b>: Again as we opt for a simple color picker plugin for jQuery. This is light yet powerful and fully functional for our use.<br />
+  This is the plugin I use for this purpose. <a href="http://www.eyecon.ro/colorpicker/">http://www.eyecon.ro/colorpicker/<br />
+</a>Its better to use this feature asynchnouly too.</p>
+<p lang="en" xml:lang="en">7. <b>Addition of richText Editor</b>: This would allow the form creator to add to the label of elements with Formatted text with images etc(which are frequently required in some forms as question may have images). Images can either be linked to other sites or uploaded in the our site.</p>
+<p lang="en" xml:lang="en"> <b>Implementation</b>: The following jQuery UI serves our purpose.<br />
+  <a href="http://plugins.jquery.com/project/lwRTE">http://plugins.jquery.com/project/lwRTE<br />
+  </a>This too should be loaded asynchronously to speed up the page loading process.</p>
+<p lang="en" xml:lang="en">8. <strong>Dependent Elements:</strong> I would also like to add support for dependent elements. For example, There are two combo boxes. The valid contents in the second one depends on the content in the first one. This will ofcourse be added by handling the onchange event of the combo box. Similarly there are forms which are divided into several parts. If time permits then we can have this feature too by making the form tabbed and allowing progressing only if one part is completly filled and checked for validity.</p>
+<p lang="en" xml:lang="en"><strong>Implementaion: </strong>The UI dialog for editing the comboBox will present user with the ability to link it to a parent combo box. After linked to parent comboBox, each of the values must link to a value of the parent box. Thus when a value of parent comboBox is selected, we check which all combo boxes are dependent on it and in the choices of the child comboBox we fill only the relevant options dynamically. The dependensies are stored by setting the same in the JSON object which we have been maintaing as discussed above. Similarly for tabbed forms which require part wise completion, we can allow user to create multiple forms and link them oeafter another. Thus each form except first form will have a parent attibute set which is link to the form which must be checked for validation before entering to the next form.</p>
+<p lang="en" xml:lang="en">9. <b>Custom Templates</b>: These are predefined css templates which can be used to set the UI colors and layouts in a single go. This will not only save space as each form will just link to these template instead of seperately defining them for each form but also provide a big ease to the user(form creator).The Framework can be easily made in such a manner that more templates can be extended without affecting the precious forms.</p>
+<p lang="en" xml:lang="en"><strong>Implementation</strong> requires simply unloading the existing css styles and applying the new ones. We can provide many themes from the jQuery UI.</p>
+<p lang="en" xml:lang="en">10. <b>Resizing</b>: The form elements like the size of the entire form etc should be resizable by providing a drag handle on the boundary and at the corners. Same should be the case with other possible elements where we may feel the necessity. As an example, see the demo where textarea and form size is resizable.</p>
+<p lang="en" xml:lang="en"><strong>Implementation:</strong> For each of such element set the resizable property. <em>$(element).resizable(handle:'drag_handle_div');</em></p>
+<p lang="en" xml:lang="en">11. <b>Tool Tip</b>: There are situations when form creators need to give some hint of what should be the input in a form field. This would enable the user to add tooltips as easily as possible.</p>
+<p lang="en" xml:lang="en">We may use this plugin to jQuery. Its light.	<a href="http://docs.jquery.com/Plugins/Tooltip/tooltip">http://docs.jquery.com/Plugins/Tooltip/tooltip</a>. But as we dont need any fancy tips, we can avoid it and switch to the simple tooltip provided using normal jQuery.</p>
+<p lang="en" xml:lang="en">12. <b>Input of Numbers</b>: These fields will be interpreted as number. Restrictions can be imposed on the possible inputs. In a special case when the values can lie only in a fixed range, the user may give the [min,max] and set an option to display a slider for input when the input field gains focus. The number field will have statistical analysis on them like mean, statndard deviation or can also have different graphs plotted for output. </p>
+<p lang="en" xml:lang="en"> <b>Implementation</b>: Number fields can be checked for validity on server as well as client side. The slider is already present in the jQuery and can be easily integrated.</p>
+<p lang="en" xml:lang="en">13. <strong>Integration with other databases across the world:</strong> I gained a good experience with YAHOO's YQL while participating in the Yahoo's HACKU. I plan to integrate this with certain elements like a combo box. This would also include loading data from the Learning Unlimited databases or some other forms. Intregrating with some of the LU database is ofcourse going to make the form much more powerful. For example selecting a professor from list of available professors, or selecting a course from available course list.</p>
+<p lang="en" xml:lang="en"><strong>Implementation: </strong>A simple example for this would a Combo box which has been set to type country. Hence it should automatically load a list of possible countries in the box. This can be done by loading the country list in the background. The YQL Rest Query for getting the list of countries for the box in a JSON format would be:<br />
+<a href="http://query.yahooapis.com/v1/public/yql?q=select%20name%20from%20geo.countries&amp;format=json&amp;diagnostics=true&amp;callback=cbfunc">http://query.yahooapis.com/v1/public/yql?q=select%20name%20from%20geo.countries&amp;format=json&amp;diagnostics=true&amp;callback=cbfunc</a><br />
+also in cases when we need to fill a dependent combo Box, eg, when the parent comboBox is continent and the child is country, and suppose the selected continent is  North America, Then the child Combo Box can be filled using the following YQL Rest Query.<br />
+<a href="http://query.yahooapis.com/v1/public/yql?q=select%20name%20from%20geo.countries%20where%20place%3D%22North%20America%22&amp;format=json&amp;diagnostics=true&amp;callback=cbfunc">http://query.yahooapis.com/v1/public/yql?q=select%20name%20from%20geo.countries%20where%20place%3D%22North%20America%22&amp;format=json&amp;diagnostics=true&amp;callback=cbfunc</a><br/>
+This would fill the child combo box with all countries in North America.</p>
+<p lang="en" xml:lang="en">14. <strong>Validity Of Input: </strong>We can validate the input on form submission at client as well as server side. Some validations are already added to the form on basis of type of input. As an example in the demo the email field and Date fields are checked for validation against some predefined regular expressions. We need to assign some regular expression checks for other possible inputs. Also checks like the input to a combo box or radio button is amongst its option as we have to necessarily deal with the DOM manipulations. Hence the type of field will decide the type of check to be done.</p>
+<p lang="en" xml:lang="en"><strong>Implementation:</strong> Simplly traverse throught the digits to check for validityof the numbe. In django at backend we can use the <em>isdigit() </em>function for integers. For floating type we can put the convertion in a try catch block.</p>
+<p lang="en" xml:lang="en">15. <b>Export of data</b>: The data of form submissions can be exported to Excel , CSV or pdf format. This may also include exporting the pie and graph chart. (I have already added support for downloading the excel and CSV format in the demo). For the Excel file dynamic creation, I used the xlwt library which is the stable release of pyexcelerator. It provides easy creeation of excel sheets with formatting. For creating the CSV format files we already have the csv library. The files can be downloaded in demo from the review <a href='http://www.baatooni.com/svg/reviewform/?id=1'>page</a> </p>
+<p lang="en" xml:lang="en"> Download the excel format of the worldcup ferver form result <a href="http://www.baatooni.com/svg/excel.xls?id=1">here</a>.<br />
+  Download the CSV format of the worldcup fever form result <a href="http://www.baatooni.com/svg/csv.csv?id=1">here</a>.</p>
+<p lang="en" xml:lang="en">16. <strong>Support for browsers with &lt;IE6 versions :</strong> As we need to provide support also for IE6 users we need to provide an alternate page for the IE6 users for submittig the form. As suggested by Jack Hill on the mailing list we dont need to worry about the custom form Generation page as it would be mainly used by Teachers. But for the form submission page, we need to provide the IE6 support.This can be check using conditional comments as <em>&lt;!--[if lt IE6]&gt; </em>and others if we have features which is supported for some versions and not for some.As the form submission page does not have many advanced features, we can easily render the whole page at the backend and present user with a simple page where user can fill the form. Here we can check that if the user has enabled javascript then we can use the client side form validation else just rely on server side validation. For teachers who user less than IE6 versions its preferable to asl them to update to some advanced versions. using<br />
+      <em>&lt;![if lt IE 6]&gt;  
+      <br />
+&lt;p&gt;Please upgrade to Internet Explorer version 6.&lt;/p&gt;  
+  <br />
+&lt;![endif]&gt;</em></p>
+<p lang="en" xml:lang="en"> <b>Backend Implementation</b>:</p>
+<p lang="en" xml:lang="en"> 17. For backend we can have two tables:</p>
+<p lang="en" xml:lang="en"> Table 1 has the following fomat:</p>
+<p lang="en" xml:lang="en">     || Id || Title || Public JSON string || Private JSON string || No of submissions || start time of submission || last time of submission ||  Id of creator ||</p>
+<p lang="en" xml:lang="en"> Table 2 has following fomat:</p>
+<p lang="en" xml:lang="en">    || Id of user who submitted the form || Foreign key to Table 1 || Unique identity of field || Value of the field ||</p>
+<p lang="en" xml:lang="en">The JSON Public String is mainly used for rendering the form for submission at the user end. The Private JSON string is used for validation of the form and other analysis purposes as discussed before. Both the fields are generated at time of Form creation. The form can be filled only after the start time and ends after the last time of submission. Another way is to create an intermediate table which holds the field and each form is linked to the fields it has. Then each field is in turn linked to its values in the third table. But this model would increase the time in serving the form as in first case we just need to send the public JSON string and the form is created. In other case we have to get the JSON string of each field and serving the form will take time. Also while analysis of the form, the second will need to perse each fields JSON string and then proceed however in the first model we have a single string. But as the string size have a huge difference, any model would work fine. So its better to have two tables than having three tables and increasing the linking.</p>
+<p lang="en" xml:lang="en"> <b>Advantages of the model</b>:</p>
+<p lang="en" xml:lang="en"> 1. <b>Fexibility</b>: The proposed model is highly flexible in terms of the adding new features to existing form elements or adding a new type of form element. As this would not require editing anypart of the database. We just need to store it together with the json string and then parse it as we need. The new variable will be present in it. Hence, Any changes in user GUI will not affect the backend. We just need to edit the page which displays the form to include the new feature too.</p>
+<p lang="en" xml:lang="en"> 2. <b>Backward Compatibility</b>: If we add some features, then as we are not adding a new table column etc, we can check easily in the parsed string which data is present and not. In older versions, the database's json data will have no field in that part and hence we can either switch to default for that field or ignore it as required.</p>
+<p lang="en" xml:lang="en">3.<strong> Listing the forms: </strong>As some major parameters of the form ; the Form Title, Form Id, No of submission, date of creation and submission and details of the creator etc are not encoded in the JSON string, hence in cases where we just need to present a summary of the form, eg while listing the form, we dont need to parse the whole form's JSON string. Hence as these field may be readily required they are stored without encoding in the JSON string so that we do not require to parse the whole string just for displaying the summary of the form.</p>
+<p lang="en" xml:lang="en"> 3. <b>Query Response Time</b>: As the no of rows go on increasing with the no of submissions of the form, the queries may take time after the no of rows increase to a very large number. For this, we can have a scheduled time after which a form submission is stopped and also a time after which the form is completely deleted from the server(though some forms may not have any such time). After a form submission is stopped the form needs no more editing. Hence, we can have them stored in some NoSQL database like mongodb (thanks to adam and dhruv for the idea). MongoDB speeds up the process to a lot extent. Also integration of mongodb with django is very easy through the opensource django project on:<br />
+  <a href="https://github.com/hmarr/django-mumblr">https://github.com/hmarr/django-mumblr</a></p>
+  <p lang="en" xml:lang="en">18. <b>Analysis of data based on different views</b>.</p>
+  <p lang="en" xml:lang="en">i) <b>Group on basis of form submission</b>. Each form submission can be viewed seperately. This would be useful in cases where we want to know the submission of each of the user.</p>
+  <p lang="en" xml:lang="en"><strong>Implementation</strong>: Simply get first the required form object from table 1 as : <em>reqForm=table1.objects.get(Id=formId)</em><br />
+  Now get the required field values set from table 2 as:<em> vals=table2.objects.filter(form=reqForm).filter(user=userId)</em><br />
+  Now for a particular field value we use <em>vals.get(field=reqField).value</em></p>
+  <p lang="en" xml:lang="en">ii) <b>Group on basis of the Fields</b>: The data of submission is grouped for analysis on basis of fields. This is useful in cases like analysis of a polling result. Some part of this has been implemented. For now the checkbox results are analysed through a YES/NO bar graph. and the radio button polls are analysed on basis of pie chart distribution. They lack labeling in the output which needs implementation. For Number field similarly possible options can be to show the mean and standars deviation. At present the graphs are generated as SVG vector images but certain versions of internet explorer may not support SVG images. They do supprt the same after adding the Adobe plugin for the same. Either we can recommend them to download the plugin, or we can generate the image at backend but this is really expensive. Or we can use this Library at <a href='http://code.google.com/p/svgweb/'>http://code.google.com/p/svgweb/</a> . I would prefer using this library as it is light and will also reduce the load on server as generating svg images are fall less expensive than actual images.</p>
+  <p lang="en" xml:lang="en"><strong>Implementation: </strong>Similar as in the first case. just in second query, we modify the filter to be<em> .filter(field=fieldReq)</em></p>
+  <p lang="en" xml:lang="en">19. <b>Creation of views for user for easy generation of Forms</b>. By views I mean templates of some standard forms. For now the main such example would be Poll View where elements are mainly the checkboxes for YES/NO polling and radio boxes for multioption polling. After-Submission views of the elements can also be customised so that polling View only has analysis on basis of Piecharts and bar Graph(may be we can implement some line graph too for something like no of polls(or form submissions) Vs time axis.) Another such view will be custom generation of Quizes. Teachers can Make Quiz Papers. They will also be required to enter the correct answer in this case. Finally the processed results can be made to have the marks (may be we can allow them to downlad an excel formatted marks list) obtained by each student and Performance of the class.</p>
+  <p lang="en" xml:lang="en"><strong>Implementation:</strong>This would require creating certain modifications of the same regular interface but provide the functionaties in a restricted sense so that the data can be analysed in specific defined ways which depends on the type of view.</p>
+  <p><strong>Tentative Timeline</strong>
+  <table id="mytable" bgcolor="#FCFCCC" border="1" cellspacing="0" cellpadding="5" >
+  <tr><td width="81" style=" font-size:16px; border:1px solid;">Date</td>
+  <td width="693" align="center" style=" font-size:18px;"><b>Proposed Work to finish</b></td>
+  </tr>
+  <tr><td>1-May-2011</td>
+  <td>Continue with Reading the Source code. Getting familiar with the coding guidelines Getting in touch with the LU community. I would preferably try be present on IRC to discuss things about the source code wherever i am stuck. I need to study a bit about MongoDB and will browse some of the fast and lightweight plugins of jQuery.</td>
+  </tr>
+  <tr>
+    <td>11-May-2011</td>
+    <td>Make a small SRS with Use Case Diagrams and others if required to get better in touch with the user needs which may arrive at time of deployment. They will not only serve as a dcoumentation to the source code but also as a tutorial for a new user to get started with creating the forms.</td>
+  </tr>
+  <tr>
+    <td>18-May-2011</td>
+    <td>Coding phase-I. Integration of the existing demo code with the LU source code together with seaching for any improvements possible. Adding the proper security features like linking with the existing authentication process. Also Improve the existing UI to match LU website css. Include more of some basic form elements.</td></tr>
+  <tr>
+    <td>23-May-2011</td>
+    <td>Testing Phase-I, start with checking some possible authentication related flaw. Correct the possible DOM manipulation related security flaws and also those which may be related to SQL Injections.For example stripping possible script tags possibly present in the labels.</td></tr>
+  <tr>
+    <td>27-May-2011</td>
+    <td>Coding Phase-II, Implementation of other UI elements and adding their support to the backend and in the userview form .Also adding the support for the context menu for editing which appeasrs on right click. In this phase, I will include all features other than the rich Text Editor, the dependent elements and tabbed forms. Add support for different sort of views which may be generated considering the different fields. Improving upon the excel file generation to include the bar graphs and charts if user wishes. Adding support for PDF download. Adding the cron job to shift the finished forms to the MongoDB database. Checking for support of any issues with IE6 or other browsers which may have been included.</td>
+  </tr>
+  <tr>
+    <td>10-June-2011</td>
+    <td>Add support for form elements whose options or other contents would be dynamically loaded from the web mostly from YQL or other sources of data.</td>
+  </tr>
+  <tr>
+    <td>12-June-2011</td>
+    <td>Testing Phase-II,Submitting to the community a working Form creator and asking for reviews and bugs.</td></tr>
+  <tr>
+    <td>16-June-2011</td>
+    <td>Planning for Possible improvements. Review the SRS, Add aditional Functional Requirements. Discuss the possible improvements with the mentor. Ask for suggestions probably on IRC or the mailing list. Start Planning for the same. Browsing the net for possible improments and available algorithms.</td>
+  </tr>
+  <tr>
+    <td>18-June-2011</td>
+    <td>Present the mentor with a list of proposed improvements and additional functionalities to be added and complete solutions on how to implement the same. Discuss for the improvements.</td>
+  </tr>
+  <tr>
+    <td>27-June--2011</td>
+    <td>Coding Phase-III, Implement some of the features discussed in the new proposal list. These are features which are required a lot by the user and haven't been implemented.Improvement of already present features.</td>
+  </tr>
+  <tr>
+    <td>7-July-2011</td>
+    <td>Testing Phase-III, Submitting the code for review. Seaching for possible bugs etc. Final review for midterm evalutation submission.</td>
+  </tr>
+  <tr>
+    <td>11-July-2011</td>
+    <td>Coding Phase-IV, Addding support for some of the advanced features like the rich Text Editor, dependent comboBox and tabbed forms. </td>
+  </tr>
+  <tr>
+    <td>18-July-2011</td>
+    <td>Adding support for the Custom Templates, Adding support for editing the templates etc.</td></tr>
+  <tr>
+    <td>22-July-2011</td>
+    <td>Improving upon the backend to include possible heuristics etc which can speed up the serving of forms. Look for other options available in the front-end and backend for improvement so that speed increases. As by this time we will be well familiarised with the project, I am sure we can improve upon certaing things.</td></tr>
+  <tr>
+    <td>27July--2011</td>
+    <td>Testing Phase-IV, This would be a small testing phase where any known bugs would be corrected.</td>
+  </tr>
+  <tr>
+    <td>1-August-2011</td>
+    <td>Coding Phase-V, Adding any functionalities which are left out and need to be implemented. These may be some from those discussed in 15-22 June period or other requirements which might have been discovered</td>
+  </tr>
+  
+  <tr>
+    <td>6-August-2011</td>
+    <td>Testing Phase-V, Submitting the source code for review. The code is sure to have some flaws and areas where it can be improved upon. I would try to accomodate any issues where the code can be improved. This Testing Phase is going to remove any sort of bugs present in the code. Hence, the phase is going to last long.</td>
+  </tr>
+  <tr>
+    <td>13-August-2011</td>
+    <td>Final code submission, I will submit the final code hopefully with no known bugs.</td>
+  </table>
+  </p>
+  <p>After the code submission, I would be always willing to fix any bugs which may be discovered now and then in the project. The suggested Timeline is tentative and approximately as suggested by google on GSOC website but I feel I can code the project at much faster speed as I have a lot of reading of each of the suggested idea and will need less time for reading in the GSOC coding period. Thus I feel I will have enough time to do something more. I would hence in addition to it like to add a sticky note facility to the student and teacher page. This will not take much time as it simply extend the draggable and resizable elements feature into a new dimension. we can keep small draggable sticky notes in the student and teacher profile page which would be draggable and remember the sticky note position and size in a simple database. To keep things simple in terms of clustering of sticky notes. We can limit the no of sticky notes and max content of sticky notes. Those who have jQuery support in their browser have it draggable around the window. Other have the same thing but as we dont execute the .dragable() and .resizable() feature by checking the browser version in conditional comments we have them simply aligned as div elements in the profile page. These sticky notes are private and not visible to others if they see their profile. As this is slightly out of topic hence If time doesn't permit in GSOC period, I would like to add this sticky notes feature afterwards.</p>
+  </div>
+</div>
+</body>
+</html>
