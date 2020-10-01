@@ -1,4 +1,4 @@
-My-Django-Experiment
+My-Django-Experiment(an amazing projects)
 ====================
 
 The repository contains a django wesite with a set of django apps built by me to try Django apps.
@@ -15,7 +15,7 @@ AUTOMATED WEB-FORM GENERATOR
 ------------------------
 An attempt to something similar to google forms. Users can create their forms for surveys etc through GUI provided by the app on the website. Simple Drag and Drop to position elements and GUI to edit element properties. One can also view the form submission status as a summary with bar graph, pie chart etc. The submission may also be downloaded in Excel format.
 
-IMAGE EDITOR IN RAPHAEL
+IMAGE  IN RAPHAEL
 -----------------------
 The backed in Django is really simple here built in Django. The main part is the Front end, a GUI for image editing provided by Raphael Libarary. The images are SVG content and are saved into the database.
 
