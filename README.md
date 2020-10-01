@@ -12,7 +12,7 @@ As Facebook changed its API since then, The app is not compatible to be run on t
 
 
 AUTOMATED WEB-FORM GENERATOR
-------------------------
+----------------------------
 An attempt to something similar to google forms. Users can create their forms for surveys etc through GUI provided by the app on the website. Simple Drag and Drop to position elements and GUI to edit element properties. One can also view the form submission status as a summary with bar graph, pie chart etc. The submission may also be downloaded in Excel format.
 
 IMAGE EDITOR IN RAPHAEL
