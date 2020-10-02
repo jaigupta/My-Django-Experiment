@@ -1,4 +1,4 @@
-import urllib2, urllib
+import urllib2, urllib , urllib3
 
 API_SSL_SERVER="https://api-secure.recaptcha.net"
 API_SERVER="http://api.recaptcha.net"
